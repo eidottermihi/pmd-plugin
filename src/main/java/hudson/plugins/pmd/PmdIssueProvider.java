@@ -90,6 +90,6 @@ public class PmdIssueProvider extends IssueProvider {
     @Nullable
     @Override
     public String getBuildResultUrlName() {
-        return "pmdResult";
+        return "pmd";
     }
 }
