@@ -1,8 +1,7 @@
 package hudson.plugins.pmd;
 
 import hudson.Extension;
-import hudson.model.AbstractBuild;
-import hudson.model.Action;
+import hudson.model.Run;
 import hudson.plugins.analysis.util.model.FileAnnotation;
 import org.jenkinsci.plugins.codehealth.provider.Priority;
 import org.jenkinsci.plugins.codehealth.provider.issues.AbstractIssueMapper;
@@ -25,8 +24,8 @@ public class PmdIssueProvider extends IssueProvider {
 
     @Nonnull
     @Override
-    public Collection<Issue> getExistingIssues(AbstractBuild<?, ?> build) {
-        PmdResult result = getResult(build);
+    public Collection<Issue> getExistingIssues(Run<?, ?> run) {
+        PmdResult result = getResult(run);
         if (result != null) {
             return map(result.getAnnotations());
         }
@@ -49,18 +48,17 @@ public class PmdIssueProvider extends IssueProvider {
         }
     }
 
-    private PmdResult getResult(final AbstractBuild<?, ?> build) {
-        for (Action action : build.getPersistentActions()) {
-            if (action instanceof PmdResultAction) {
-                return ((PmdResultAction) action).getResult();
-            }
+    private PmdResult getResult(final Run<?, ?> run) {
+        PmdResultAction action = run.getAction(PmdResultAction.class);
+        if (action != null) {
+            return action.getResult();
         }
         return null;
     }
 
     @Nullable
     @Override
-    public Collection<Issue> getFixedIssues(AbstractBuild<?, ?> build) {
+    public Collection<Issue> getFixedIssues(Run<?, ?> run) {
         return null;
     }
 
