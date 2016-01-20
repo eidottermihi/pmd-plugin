@@ -4,14 +4,14 @@
   <parent>
     <groupId>org.jvnet.hudson.plugins</groupId>
     <artifactId>analysis-pom</artifactId>
-    <version>1.63</version>
+    <version>1.64</version>
     <relativePath>../analysis-pom</relativePath>
   </parent>
 
   <artifactId>pmd</artifactId>
   <packaging>hpi</packaging>
   <name>PMD Plug-in</name>
-  <version>3.43-SNAPSHOT</version>
+  <version>3.44-SNAPSHOT</version>
   <url>http://wiki.jenkins-ci.org/x/GAAHAQ</url>
   <description>This plug-in generates the trend report for PMD, an
     open source static code analysis program.
@@ -38,7 +38,7 @@
     <dependency>
       <groupId>org.jvnet.hudson.plugins</groupId>
       <artifactId>analysis-core</artifactId>
-      <version>1.73</version>
+      <version>1.75</version>
     </dependency>
     <dependency>
       <groupId>org.jvnet.hudson.plugins</groupId>
