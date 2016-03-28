@@ -25,7 +25,7 @@ public class PmdIssueProvider extends IssueProvider {
 
     @Nonnull
     @Override
-    public Collection<Issue> getExistingIssues(AbstractBuild<?, ?> build) {
+    public Collection<Issue> getIssues(AbstractBuild<?, ?> build) {
         PmdResult result = getResult(build);
         if (result != null) {
             return map(result.getAnnotations());
@@ -58,12 +58,6 @@ public class PmdIssueProvider extends IssueProvider {
         return null;
     }
 
-    @Nullable
-    @Override
-    public Collection<Issue> getFixedIssues(AbstractBuild<?, ?> build) {
-        return null;
-    }
-
     @Nonnull
     @Override
     public String getOrigin() {
@@ -74,11 +68,6 @@ public class PmdIssueProvider extends IssueProvider {
     @Override
     public String getOriginPluginName() {
         return "PMD Plugin";
-    }
-
-    @Override
-    public boolean canProvideFixedIssues() {
-        return false;
     }
 
     @Nullable
